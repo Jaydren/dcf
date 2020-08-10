@@ -1,0 +1,27 @@
+{
+  "name": "dcf",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jaydren/dcf.git"
+  },
+  "author": "jaydren",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jaydren/dcf/issues"
+  },
+  "homepage": "https://github.com/Jaydren/dcf#readme",
+  "devDependencies": {
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  },
+  "dependencies": {
+    "vue": "^2.6.11",
+    "vue-cli": "^2.9.6"
+  }
+}
