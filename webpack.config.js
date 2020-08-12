@@ -6,7 +6,7 @@ const {
 module.exports = {
     mode: 'development',
     entry: {
-        app: './src/index.js',
+        index: './src/index.js',
     },
     devtool: 'inline-source-map',
     devServer: {
@@ -14,15 +14,30 @@ module.exports = {
         hot: true,
     },
     plugins: [
-        new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
+        new CleanWebpackPlugin({
+            cleanStaleWebpackAssets: false
+        }),
         new HtmlWebpackPlugin({
-            title: '管理输出',
+            title: 'Caching',
         }),
     ],
     output: {
-        filename: '[name].bundle.js',
+        filename: '[name].[contenthash].js',
         path: path.resolve(__dirname, 'dist'),
     },
+       optimization: {
+        moduleIds: 'hashed',
+             runtimeChunk: 'single',
+                  splitChunks: {
+                       cacheGroups: {
+                         vendor: {
+                           test: /[\\/]node_modules[\\/]/,
+                           name: 'vendors',
+                           chunks: 'all',
+                         },
+                       },
+                     },
+           },
     module: {
         rules: [{
                 test: /\.s[ac]ss$/i,

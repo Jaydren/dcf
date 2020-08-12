@@ -1,25 +1,48 @@
+// import _ from 'lodash';
+// // import './style.scss';
+// import Print from './print.js';
+// function component() {
+//     const element = document.createElement('div');
+//  // lodash，现在通过一个 script 引入
+//     element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+//     element.classList.add('hello');
+//     const btn = document.createElement('button');
+//     btn.innerHTML = '点击这里，然后查看 console！';
+//     btn.onclick = Print.bind(null, 'Hello webpack!'); 
+//     element.appendChild(btn);
+//     return element;
+//   }
+
+//   document.body.appendChild(component());
+
+
+// function getComponent() {
+//    return import( /* webpackChunkName: "lodash" */ 'lodash').then(({
+//       default: _
+//    }) => {
+//       const element = document.createElement('div');
+
+//       element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+
+//       return element;
+
+//    }).catch(error => 'An error occurred while loading the component');
+// }
+// getComponent().then(component => {
+//    document.body.appendChild(component);
+// })
+
 import _ from 'lodash';
-import './style.scss';
-import printMe from './print.js';
-function component() {
-    const element = document.createElement('div');
+import numRef from './ref.json';
 
- // lodash，现在通过一个 script 引入
-    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-    element.classList.add('hello');
+export function numToWord(num) {
+  return _.reduce(numRef, (accum, ref) => {
+    return ref.num === num ? ref.word : accum;
+  }, '');
+}
 
-    const btn = document.createElement('button');
-    btn.innerHTML = '点击这里，然后查看 console！';
-    btn.onclick = printMe; element.appendChild(btn);
-    return element;
-  }
-  
-  document.body.appendChild(component());
-
-  
- if (module.hot) {
-   module.hot.accept('./print.js', function() {
-     console.log('Accepting the updated printMe module!');
-     printMe();
-   })
- }
+export function wordToNum(word) {
+  return _.reduce(numRef, (accum, ref) => {
+    return ref.word === word && word.toLowerCase() ? ref.num : accum;
+  }, -1);
+}
